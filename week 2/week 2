@@ -1,3 +1,9 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
 class AttendanceSession {
 public:
     string courseCode;
@@ -29,3 +35,40 @@ public:
         cout << "Duration: " << duration << " minutes\n";
     }
 };
+
+int main() {
+    AttendanceSession session;
+    int choice;
+
+    do {
+        cout << "\n===== DIGITAL ATTENDANCE SYSTEM =====\n";
+        cout << "1. Register Student\n";
+        cout << "2. View Students\n";
+        cout << "3. Search Student\n";
+        cout << "4. Create Lecture Session\n";
+        cout << "5. View Current Session\n";
+        cout << "6. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 4:
+                session.createSession();
+                break;
+
+            case 5:
+                session.displaySession();
+                break;
+
+            case 6:
+                cout << "Exiting program...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while(choice != 6);
+
+    return 0;
+}
