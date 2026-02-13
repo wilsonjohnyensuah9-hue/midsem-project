@@ -36,39 +36,86 @@ public:
     }
 };
 
+void displayMenu() {
+    cout << "\n============================================\n";
+    cout << "   DIGITAL ATTENDANCE SYSTEM - Main Menu    \n";
+    cout << "============================================\n";
+    cout << "1. Register Student\n";
+    cout << "2. View All Students\n";
+    cout << "3. Search Student by Index\n";
+    cout << "4. Create New Lecture Session\n";
+    cout << "5. View Current Session Details\n";
+    cout << "6. Mark Attendance\n";
+    cout << "7. View Attendance Report\n";
+    cout << "8. Exit Program\n";
+    cout << "============================================\n";
+    cout << "Enter your choice: ";
+}
+
 int main() {
     AttendanceSession session;
     int choice;
+    bool sessionActive = false;
 
     do {
-        cout << "\n===== DIGITAL ATTENDANCE SYSTEM =====\n";
-        cout << "1. Register Student\n";
-        cout << "2. View Students\n";
-        cout << "3. Search Student\n";
-        cout << "4. Create Lecture Session\n";
-        cout << "5. View Current Session\n";
-        cout << "6. Exit\n";
-        cout << "Enter choice: ";
+        displayMenu();
         cin >> choice;
+        cin.ignore();
 
         switch(choice) {
+            case 1:
+                cout << "\n[Student Registration Module]\n";
+                cout << "This feature will allow registering new students.\n";
+                break;
+
+            case 2:
+                cout << "\n[View All Students]\n";
+                cout << "Displaying all registered students...\n";
+                break;
+
+            case 3:
+                cout << "\n[Search Student]\n";
+                cout << "Enter student index number to search.\n";
+                break;
+
             case 4:
                 session.createSession();
+                sessionActive = true;
                 break;
 
             case 5:
-                session.displaySession();
+                if (sessionActive) {
+                    session.displaySession();
+                } else {
+                    cout << "\nNo active session! Please create a session first.\n";
+                }
                 break;
 
             case 6:
-                cout << "Exiting program...\n";
+                if (sessionActive) {
+                    cout << "\n[Mark Attendance]\n";
+                    cout << "Marking attendance for current session...\n";
+                } else {
+                    cout << "\nNo active session! Please create a session first.\n";
+                }
+                break;
+
+            case 7:
+                cout << "\n[Attendance Report]\n";
+                cout << "Generating attendance report...\n";
+                break;
+
+            case 8:
+                cout << "\n============================================\n";
+                cout << "Thank you for using the Attendance System!\n";
+                cout << "============================================\n";
                 break;
 
             default:
-                cout << "Invalid choice!\n";
+                cout << "\nInvalid choice! Please enter a valid option (1-8).\n";
         }
 
-    } while(choice != 6);
+    } while(choice != 8);
 
     return 0;
 }
